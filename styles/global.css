@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+:root {
+    --dark-theme-primary: #282A36;
+    --dark-theme-secondary: #383A59;
+    --dark-theme-pink: #ff79c6;
+    --dark-theme-green: #50fa7b;
+    --dark-theme-green-two: #3bac57;
+    --dark-theme-text: #fff;
+}
+
+::selection {
+    background: var(--dark-theme-pink);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Roboto Condensed', sans-serif;
+    color: var(--dark-theme-text);    
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark-theme-text);
+}
+
+a:hover {
+    color: var(--dark-theme-pink);
+}
+
+ul {
+    list-style: none;    
+}
+
+
+button {
+    height: 2.5rem;
+    width: 8rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: .9rem;
+    cursor: pointer;
+}
+
+li:hover {
+    color: var(--dark-theme-pink);
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.centralized {
+    justify-content: center;
+    align-items: center;
+}
+
+.circle {
+    border-radius: 20rem;
+    border: 0.15rem solid;
+}
+
+#header {
+    width: 100%;
+    height: 4.5rem;
+    background: var(--dark-theme-primary);
+    gap: 20rem;
+}
+
+#about {
+    width: 100%;
+    height: 10rem;
+    background: var(--dark-theme-primary);
+}
+
+#menu {
+    gap: 1rem;
+    font-size: 1.2rem;
+}
+
+#banner {
+    gap: 1.5rem;
+    background: var(--dark-theme-secondary);
+    width: 100%;
+    height: 35rem;
+}
+
+#name {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#name:hover {
+    color: var(--dark-theme-pink);
+}
+
+#bio {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+#name-banner {
+    font-size: 3rem;
+    color: var(--dark-theme-pink);
+}
+
+#profile-photo {
+    width: 20rem;
+}
+
+#linkedin-button {
+    background: var(--dark-theme-green);
+}
+
+#linkedin-button:hover {
+    background: var(--dark-theme-green-two);
+}
+

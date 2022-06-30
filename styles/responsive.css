@@ -1,0 +1,44 @@
+@media (max-width: 1185px) {
+    #projects {
+        height: 90rem;
+    }
+
+    #menu {
+        display: none;
+    }
+}
+
+@media (max-width: 784px) {
+    
+    #menu {
+        display: none;
+    }
+
+    #projects {
+        height: 165rem;
+    }
+}
+
+
+@media (max-width: 640px) {
+    .card {
+        height: 20rem;
+        width: 17rem;
+    } 
+
+    #menu {
+        display: none;
+    }
+
+    #projects {
+        height: 170rem;
+    }
+
+    #banner {
+        height: 40rem;
+    }
+
+    #project-technology {
+        width: 6rem;
+    }
+}

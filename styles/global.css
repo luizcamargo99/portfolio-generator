@@ -68,6 +68,23 @@ form {
     gap: 2rem;
 }
 
+input {
+    width: 20rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    padding: .25rem;
+}
+
+input:focus {
+    outline: none;
+}
+
+button:disabled:hover {
+    cursor: auto;
+    background: var(--dark-theme-green);
+}
+
 .row {
     display: flex;
     flex-direction: row;
@@ -154,6 +171,7 @@ form {
 
 #name-banner {
     font-size: 3.5rem;
+    text-align: center;
     color: var(--dark-theme-pink);
 }
 

@@ -10,16 +10,17 @@
     <script src="./scripts/angular-generator.js"></script>
     <script src="./scripts/constants.js"></script>
     <link rel="stylesheet" href="./styles/global.css"> 
+    <link rel="stylesheet" href="./styles/responsive.css"> 
 </head>
 <body>
     <div id="generator" ng-show="PortfolioFinalized == false">
         <div class="row centralized header">
             <span style="font-size: 1.8rem">Portfolio Generator</span>
         </div>
-        <form style="margin-top: 2rem">  
-            <label for="username">Qual o seu username no Github?</label>
+        <form style="margin-top: 10rem">  
+            <label for="username" style="font-size: 1.2rem;">Qual o seu username no Github?</label>
             <input type="text" id="username" ng-model="Username">
-            <button ng-click="GeneratePortfolio()">{{Loading ? 'Gerando Portfolio' : 'Gerar Portfolio'}}</button>
+            <button ng-click="GeneratePortfolio()"  ng-disabled="IsEmpty(Username)">{{Loading ? 'Gerando Portfolio' : 'Gerar Portfolio'}}</button>
         </form>    
     </div>
 
@@ -48,17 +49,17 @@
                             <span id="technology-name"> {{lang}} </span>
                         </div>
                     </div>
-                    <button ng-click="seeProject(repo.html_url)">Ver projeto melhor</button>
+                    <button ng-click="OpenUrlNewTab(repo.html_url)">Ver projeto! 👀</button>
                 </div>
             </div>
-            <button style="width: 12rem;">Ver todos os projetos...</button>
+            <button style="width: 12rem;" ng-click="OpenUrlNewTab(Profile.html_url)">Ver todos os projetos...</button>
         </div>
         <div id="contact" class="column centralized">
             <h1>Contato</h1>
         </div>
 
         <div id="footer" class="centralized column">
-            <span>© {{CurrentYear}} -  {{Profile.name}}. Todos os direitos reservados. | Criado por <a href="https://github.com/luizcamargo99/portfolio-generator" target="_blank">Portfolio Generator</a> 
+            <span style="text-align: center;">© {{CurrentYear}} -  {{Profile.name}}. Todos os direitos reservados. | Criado por <a href="https://github.com/luizcamargo99/portfolio-generator" target="_blank">Portfolio Generator</a> 
             </span>
         </div>
     </div>   

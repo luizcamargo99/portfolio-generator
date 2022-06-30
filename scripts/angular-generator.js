@@ -25,6 +25,10 @@ angular.module('app').controller('GeneratorController', ['$scope', '$http', '$ro
         $scope.RequestHttp(url.profileGithub.replace('[USERNAME]', $scope.Username)).then(function (userResult) {
             if (userResult.status == apiStatus.success) {
                 $scope.Profile = userResult.data;
+                if ($scope.IsEmpty($scope.Profile.name) && $scope.Profile.followers == 0){
+                    $scope.Loading = false;  
+                    return alert('Usuário não encontrado!');
+                }
                 $rootScope.page.setTitle($scope.Profile.name);
                 $scope.Profile.name_title = $scope.Profile.name.toLowerCase().replace(/\s/g, '');  
                 $scope.GetRepositories();              
@@ -65,6 +69,10 @@ angular.module('app').controller('GeneratorController', ['$scope', '$http', '$ro
 
     $scope.IsEmpty = function (value) {
         return value == null || value == "";
+    }
+
+    $scope.OpenUrlNewTab = function (url) {
+        window.open(url, '_blank').focus();
     }
 
     $scope.Initialize();

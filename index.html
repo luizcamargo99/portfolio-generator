@@ -12,32 +12,54 @@
     <link rel="stylesheet" href="./styles/global.css"> 
 </head>
 <body>
-    <!-- <form ng-show="PortfolioFinalized == false">  
-        <label for="username">Qual o seu username no Github?</label>
-        <input type="text" id="username" ng-model="Username">
-        <button ng-click="GeneratePortfolio()">{{Loading ? 'Gerando Portfolio' : 'Gerar Portfolio'}}</button>
-    </form> -->
+    <div id="generator" ng-show="PortfolioFinalized == false">
+        <div class="row centralized header">
+            <span style="font-size: 1.8rem">Portfolio Generator</span>
+        </div>
+        <form style="margin-top: 2rem">  
+            <label for="username">Qual o seu username no Github?</label>
+            <input type="text" id="username" ng-model="Username">
+            <button ng-click="GeneratePortfolio()">{{Loading ? 'Gerando Portfolio' : 'Gerar Portfolio'}}</button>
+        </form>    
+    </div>
 
-    <!-- ng-show="PortfolioFinalized" -->
-    <div id="portfolio">
-        <div id="header" class="row centralized">
-            <span id="name">luizcamargo.dev</span>
+    <div id="portfolio" ng-show="PortfolioFinalized">
+        <div class="row centralized header" style="position: fixed;">
+            <span id="name"><a href="#portfolio">{{Profile.name_title}}.dev</a></span>
             <ul class="row centralized" id="menu">
-                <li><a href="#about">Sobre</a> </li>
-                <li><a href="">Projetos</a></li>
-                <li><a href="">Tecnologias</a></li>
-                <li><a href="">Contato</a></li>
-                <li><button id="linkedin-button">Ver meu Linkedin</button></li>
-            </ul>
- 
+                <li><a href="#projects">Projetos</a></li>
+                <li><a href="#contact">Contato</a></li>
+                <li><button>Ver meu Linkedin</button></li>
+            </ul> 
         </div>
         <div id="banner" class="column centralized">
-            <img src="https://avatars.githubusercontent.com/u/59785233?v=4" alt="profile-photo" id="profile-photo" class="circle">
-            <span id="name-banner">Luiz Camargo</span>
-            <span id="bio">A Full Stack Developer passionate about creating things that impact lives through technology.</span>
+            <img src="{{Profile.avatar_url}}" alt="profile-photo" id="profile-photo" class="circle">
+            <span id="name-banner">{{Profile.name}}</span>
+            <span id="bio">{{Profile.bio}}</span>
         </div>
-        <div id="about">
-            <h2>Sobre</h2>
+        <div id="projects" class="column centralized" style="gap: 2rem">
+            <h1>Projetos</h1>
+            <div class="row centralized" style="gap: 2rem;">
+                <div class="card centralized column" ng-repeat="repo in Profile.Repositories">
+                    <span id="project-name">{{repo.name}}</span>
+                    <span id="project-description">{{repo.description}}</span>
+                    <div id="projects-technologies" class="centralized">
+                        <div id="project-technology" ng-repeat="lang in repo.Languages | limitTo: 4">
+                            <span id="technology-name"> {{lang}} </span>
+                        </div>
+                    </div>
+                    <button ng-click="seeProject(repo.html_url)">Ver projeto melhor</button>
+                </div>
+            </div>
+            <button style="width: 12rem;">Ver todos os projetos...</button>
+        </div>
+        <div id="contact" class="column centralized">
+            <h1>Contato</h1>
+        </div>
+
+        <div id="footer" class="centralized column">
+            <span>© {{CurrentYear}} -  {{Profile.name}}. Todos os direitos reservados. | Criado por <a href="https://github.com/luizcamargo99/portfolio-generator" target="_blank">Portfolio Generator</a> 
+            </span>
         </div>
     </div>   
 </body>

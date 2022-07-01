@@ -30,10 +30,25 @@ angular.module('app').controller('GeneratorController', ['$scope', '$http', '$ro
                     return alert('Usuário não encontrado!');
                 }
                 $rootScope.page.setTitle($scope.Profile.name);
-                $scope.Profile.name_title = $scope.Profile.name.toLowerCase().replace(/\s/g, '');  
+                $scope.Profile.name_title = $scope.Profile.name.toLowerCase().replace(/\s/g, ''); 
+                $scope.CreateTypingRule();
                 $scope.GetRepositories();              
             }       
         });  
+    }
+
+    $scope.CreateTypingRule = function () {
+        const bio = document.getElementById('bio');
+        const size = ($scope.Profile.bio.trim().length / 1.55).toString();
+        bio.style.width = `${size}rem`;
+        const keyFrames = document.createElement("style");
+        keyFrames.innerHTML = `
+        @keyframes typewriter{
+            from{width: 0;}
+            to{width: ${bio.style.width};}
+          }
+        `;
+        bio.appendChild(keyFrames);
     }
 
     $scope.GetRepositories = function () {
@@ -55,9 +70,14 @@ angular.module('app').controller('GeneratorController', ['$scope', '$http', '$ro
                 if (langResult.status == apiStatus.success) {
                     repo.Languages =  Object.keys(langResult.data);
                 }  
+            $scope.HandleWhatsapp();
                 $scope.PortfolioFinalized = true;                                        
             });
         }
+    }
+
+    $scope.HandleWhatsapp = function() {
+        $scope.LinkWhatsapp = url.whatsapp.replace('[PHONE]', $scope.Phone);
     }
 
     $scope.RequestHttp = function(url) {

@@ -11,6 +11,7 @@
     <script src="./scripts/constants.js"></script>
     <link rel="stylesheet" href="./styles/global.css"> 
     <link rel="stylesheet" href="./styles/responsive.css"> 
+    <link rel="stylesheet" href="./styles/typing.css"> 
 </head>
 <body>
     <div id="generator" ng-show="PortfolioFinalized == false">
@@ -19,9 +20,17 @@
         </div>
         <form style="margin-top: 10rem">  
             <label for="username" style="font-size: 1.2rem;">Qual o seu username no Github?</label>
-            <input type="text" id="username" ng-model="Username">
-            <button ng-click="GeneratePortfolio()"  ng-disabled="IsEmpty(Username)">{{Loading ? 'Gerando Portfolio' : 'Gerar Portfolio'}}</button>
-        </form>    
+            <input type="text" id="username" ng-model="Username" placeholder="luizcamargo99">
+            <label for="phone" style="font-size: 1.2rem;">Coloque o número do seu celular com DDD</label>
+            <input type="tel" id="phone" ng-model="Phone" placeholder="13988758452" maxlength="11">
+            <label for="linkedin" style="font-size: 1.2rem;">Tem Linkedin? Se sim, insira o link aqui!</label>
+            <input type="text" id="linkedin" ng-model="Linkedin" placeholder="https://www.linkedin.com/in/luiz-camargo99/">
+            <button ng-click="GeneratePortfolio()"  ng-disabled="(IsEmpty(Username) || IsEmpty(Phone)) || Loading">{{Loading ? 'Gerando Portfolio' : 'Gerar Portfolio'}}</button>
+        </form>   
+        <div class="centralized column footer">
+            <span style="text-align: center;">© {{CurrentYear}} - Todos os direitos reservados | Criado por <a href="https://github.com/luizcamargo99/portfolio-generator" target="_blank">Portfolio Generator</a> 
+            </span>
+        </div> 
     </div>
 
     <div id="portfolio" ng-show="PortfolioFinalized">
@@ -30,13 +39,13 @@
             <ul class="row centralized" id="menu">
                 <li><a href="#projects">Projetos</a></li>
                 <li><a href="#contact">Contato</a></li>
-                <li><button>Ver meu Linkedin</button></li>
+                <li><button ng-click="OpenUrlNewTab(Linkedin)" ng-if="IsEmpty(Linkedin) == false">Veja meu Linkedin</button></li>
             </ul> 
         </div>
         <div id="banner" class="column centralized">
             <img src="{{Profile.avatar_url}}" alt="profile-photo" id="profile-photo" class="circle">
             <span id="name-banner">{{Profile.name}}</span>
-            <span id="bio">{{Profile.bio}}</span>
+            <span id="bio" class="anim-typewriter">{{Profile.bio.trim()}}</span>
         </div>
         <div id="projects" class="column centralized" style="gap: 2rem">
             <h1>Projetos</h1>
@@ -54,12 +63,20 @@
             </div>
             <button style="width: 12rem;" ng-click="OpenUrlNewTab(Profile.html_url)">Ver todos os projetos...</button>
         </div>
-        <div id="contact" class="column centralized">
+        <div id="contact" class="column centralized" style="gap: 5rem;">
             <h1>Contato</h1>
+            <div class="centralized row" style="gap: 2rem;">
+                <a href="{{LinkWhatsapp}}" target="_blank">
+                    <img src="./assets/whatsapp.png" alt="whatsapp" class="circle" style="width: 12rem;">
+                </a>
+                <a href="{{Linkedin}}" target="_blank" ng-if="IsEmpty(Linkedin) == false">
+                    <img src="./assets/linkedin.png" alt="linkedin" class="circle" style="width: 12rem;">
+                </a>
+            </div>
         </div>
 
-        <div id="footer" class="centralized column">
-            <span style="text-align: center;">© {{CurrentYear}} -  {{Profile.name}}. Todos os direitos reservados. | Criado por <a href="https://github.com/luizcamargo99/portfolio-generator" target="_blank">Portfolio Generator</a> 
+        <div class="centralized column footer">
+            <span style="text-align: center;">© {{CurrentYear}} - {{Profile.name}}. Todos os direitos reservados | Criado por <a href="https://github.com/luizcamargo99/portfolio-generator" target="_blank">Portfolio Generator</a> 
             </span>
         </div>
     </div>   

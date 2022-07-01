@@ -38,7 +38,7 @@ angular.module('app').controller('GeneratorController', ['$scope', '$http', '$ro
     }
 
     $scope.CreateTypingRule = function () {
-        if(window.screen.innerWidth > 1185 && navigator.userAgentData.mobile == false) {
+        if(navigator.userAgentData.mobile == false) {
             const bio = document.getElementById('bio');
             const size = ($scope.Profile.bio.trim().length / 1.55).toString();
             bio.style.width = `${size}rem`;

@@ -38,17 +38,19 @@ angular.module('app').controller('GeneratorController', ['$scope', '$http', '$ro
     }
 
     $scope.CreateTypingRule = function () {
-        const bio = document.getElementById('bio');
-        const size = ($scope.Profile.bio.trim().length / 1.55).toString();
-        bio.style.width = `${size}rem`;
-        const keyFrames = document.createElement("style");
-        keyFrames.innerHTML = `
-        @keyframes typewriter{
-            from{width: 0;}
-            to{width: ${bio.style.width};}
-          }
-        `;
-        bio.appendChild(keyFrames);
+        if(window.screen.innerWidth > 1185 && navigator.userAgentData.mobile == false) {
+            const bio = document.getElementById('bio');
+            const size = ($scope.Profile.bio.trim().length / 1.55).toString();
+            bio.style.width = `${size}rem`;
+            const keyFrames = document.createElement("style");
+            keyFrames.innerHTML = `
+            @keyframes typewriter{
+                from{width: 0;}
+                to{width: ${bio.style.width};}
+            }
+            `;
+            bio.appendChild(keyFrames);
+        }
     }
 
     $scope.GetRepositories = function () {
